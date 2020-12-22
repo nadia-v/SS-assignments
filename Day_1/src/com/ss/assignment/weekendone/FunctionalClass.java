@@ -6,7 +6,6 @@ package com.ss.assignment.weekendone;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @author nadik
@@ -20,37 +19,48 @@ public class FunctionalClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		List<Integer> numbers = new ArrayList<>();
-		numbers.add(11);
-		numbers.add(22);
-		numbers.add(3333);
-		numbers.add(43);
-		numbers.add(10);
-		
-		List <Integer> rightmost = numbers.stream().map(num -> num%10)
-				.collect(Collectors.toList());
-		rightmost.forEach(n -> System.out.println(n));
-		
-		System.out.println();
-		
-		List <Integer> doubling = numbers.stream().map(num -> num * 2)
-				.collect(Collectors.toList());
-		doubling.forEach(n -> System.out.println(n));
-		
-		System.out.println();
 		
 		List<String> strings = new ArrayList<>();
-		strings.add("ax");
-		strings.add("bb");
-		strings.add(" ");
-		strings.add("axadsx");
 		
-		
-		List <String> noX = strings.stream()
-				.map(s -> s.replaceAll("x", ""))
-				.collect(Collectors.toList());
-		noX.forEach(n -> System.out.println(n));
-		
+	
+		try {
+			List<Integer> numbers = new ArrayList<>();
+			
+			int n = Integer.parseInt(args[0]);
+			numbers.add(n);
+			for(int i=1;i<args.length;i++) {
+				numbers.add(Integer.parseInt(args[i]));
+			}	
+			System.out.println("Input: "+numbers);
+			System.out.println();
+			
+			//Return list of rightmost digits in the numbers
+			List <Integer> rightmost = numbers.stream().map(num -> num%10)
+					.collect(Collectors.toList());
+			System.out.println("Rightmost: "+rightmost);
+			System.out.println();
+			
+			//Return list of numbers multiplied by 2
+			List <Integer> doubling = numbers.stream().map(num -> num * 2)
+					.collect(Collectors.toList());
+			System.out.println("Doubling: "+doubling);
+			System.out.println();
+			
+		}catch (Exception e) {
+			try {
+				for(int i=0;i<args.length;i++) {
+					strings.add(args[i]);
+				}
+				System.out.println("Input: "+strings);
+				// Return list of strings without "x"
+				List <String> noX = strings.stream()
+						.map(s -> s.replaceAll("x", ""))
+						.collect(Collectors.toList());
+				System.out.println("No 'x': "+noX);
+				
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}	
+		}
 	}
-
 }

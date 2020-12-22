@@ -3,6 +3,8 @@
  */
 package com.ss.assignment.weekendone;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
@@ -49,10 +51,22 @@ public class PefrformOperation {
 			}
 		};
 		
-		
-		Integer num = 41;
-		System.out.println(isOdd.result(num));
-		System.out.println(isPrime.result(num));
-		System.out.println(isPalindrome.result(num));
+		Map <Integer, Integer> dictionary = new HashMap<Integer, Integer>();
+		try {
+			int cases = Integer.parseInt(args[0]);
+			for (int i=1;i<args.length-1;i=i+2) {
+				dictionary.put(Integer.parseInt(args[i]), Integer.parseInt(args[i+1]));
+			}
+			System.out.println(cases);
+			
+			dictionary.forEach((key, value) -> 
+				{if (key==1) {System.out.println(isOdd.result(value));}
+				else if (key==2) {System.out.println(isPrime.result(value));}
+				else if (key==3) {System.out.println(isPalindrome.result(value));}
+				else{System.out.println("Invalid input");}
+				});
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
