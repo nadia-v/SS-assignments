@@ -55,7 +55,10 @@ public class RecursionClass {
 		
 		for(int i=1;i<nums.size();i++) {
 			if(nums.get(i) != curr && temp == curr) {
-				if (nums.get(i) != nums.get(i+1)) {
+				if(i == nums.size()-1) {
+					numbers.add(nums.get(i));
+				}
+				else if (nums.get(i) != nums.get(i+1)) {
 					numbers.add(nums.get(i));
 				}
 				curr = nums.get(i);
@@ -73,6 +76,7 @@ public class RecursionClass {
 				temp = temp + curr;
 			}
 		}
+		System.out.println("NUMBERS: "+numbers);
 		return helper(numbers, target, 0);
 	}
 	
